@@ -38,32 +38,30 @@ jobs:
                    
       - name: Export IPA
         run: |
-          xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release CODE_SIGNING_REQUIRED=NO -sdk iphoneos -archivePath build/ios/archive/MyApp.xcarchive  clean archive -allowProvisioningUpdates
-          xcodebuild -exportArchive -archivePath build/ios/archive/MyApp.xcarchive -exportOptionsPlist ios/export.plist -exportPath build/ios/ipa
-
+         xcrun -sdk iphoneos PackageApplication -v build/ios/iphoneos/Runner.app -o build/ios/ipa/Runner.ipa
+     
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v3
         with:
-          name: MyApp-IPA
+          name: Runner IPA
           path: build/ios
          
-      # - name: Create GitHub Release
-      #   id: create_release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: "${{ github.event.inputs.target }}" # 指定的更新版本号
-      #     release_name: "iOS Release ${{ github.event.inputs.target }}"
-      #     draft: false
-      #     prerelease: false
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            tag_name: "${{ github.event.inputs.target }}" # 指定的更新版本号
+            release_name: "iOS Release ${{ github.event.inputs.target }}"
+            draft: false
+            prerelease: false
 
-      # - name: Upload IPA to Release
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #     asset_path: build/app/outputs/flutter-apk/app-release.apk
-      #     asset_name: MyApp-release.apk
-      #     asset_content_type: application/vnd.android.package-archive/ipa/*.ipa
+      - name: Upload IPA to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+           upload_url: ${{ steps.create_release.outputs.upload_url }}
+           asset_path: build/ios/iphoneos/Runner.ipa
+           asset_name: iOS_${{ github.event.inputs.target }}.ipa
