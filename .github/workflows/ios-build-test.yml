@@ -19,7 +19,7 @@ jobs:
       run: |
            flutter pub get
            flutter run 
-           flutter build ios --release --target-platform=ios-arm64 --no-codesign
+           flutter build apk --release --target-platform=android-arm64
 #    - name: Publish iOS Artefacts
 #      uses: actions/upload-artifact@v1
 #      with:
