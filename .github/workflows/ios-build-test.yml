@@ -16,7 +16,7 @@ jobs:
       - name: Install and set Flutter version
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
+           channel: 'stable'
 
       - name: Disable Flutter Analytics
         run: flutter config --no-analytics
@@ -28,7 +28,7 @@ jobs:
       
         run: |
           flutter devices
-          flutter build ios --release --no-codesign -d macos
+          flutter build ios --release --no-codesign -d macos --info
                    
       - name: Export IPA
         run: |
