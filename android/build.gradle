@@ -22,7 +22,6 @@ rootProject.buildDir = '../build'
 
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-    apply plugin: 'kotlin' // 如果子项目需要 Kotlin 插件支持
 }
 
 tasks.register("clean", Delete) {
