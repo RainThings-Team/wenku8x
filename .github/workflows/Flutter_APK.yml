@@ -45,7 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: "${{ github.event.inputs.target }}" # 指定的更新版本号
-          release_name: "iOS Release ${{ github.event.inputs.target }}"
+          release_name: "APK Release ${{ github.event.inputs.target }}"
           draft: false
           prerelease: false
 
@@ -56,5 +56,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/app/outputs/flutter-apk/app-release.apk
-          asset_name: MyApp-release.apk
+          asset_name: release_${{ github.event.inputs.target }}.apk
 
