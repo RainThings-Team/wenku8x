@@ -51,17 +51,18 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: "${{ github.event.inputs.target }}" # 指定的更新版本号
-            release_name: "iOS Release ${{ github.event.inputs.target }}"
-            draft: false
-            prerelease: false
+        with:
+          tag_name: "${{ github.event.inputs.target }}"  # 指定的更新版本号
+          release_name: "iOS Release ${{ github.event.inputs.target }}"
+          draft: false
+          prerelease: false
 
       - name: Upload IPA to Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-           upload_url: ${{ steps.create_release.outputs.upload_url }}
-           asset_path: build/ios/iphoneos/Runner.ipa
-           asset_name: iOS_${{ github.event.inputs.target }}.ipa
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/ios/ipa/Runner.ipa  # 确认 Runner.ipa 文件路径
+          asset_name: iOS_${{ github.event.inputs.target }}.ipa
+          asset_content_type: application/octet-stream
