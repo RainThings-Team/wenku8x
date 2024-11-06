@@ -28,16 +28,10 @@ jobs:
         run: |
           flutter devices
           flutter build ios --release --no-codesign -d macos
-          xcodebuild -workspace ios/Runner.xcworkspace \
-                   -scheme Runner \
-                   -configuration Release \
-                   -archivePath build/ios/archive/MyApp.xcarchive \
-                   archive CODE_SIGNING_REQUIRED=NO
                    
       - name: Export IPA
         run: |
-          xcodebuild -exportArchive \
-            -archivePath build/ios/archive/MyApp.xcarchive \
+          xcodebuild \
             -exportOptionsPlist ios/Runner/Info.plist \
             -exportPath build/ios/ipa
 
