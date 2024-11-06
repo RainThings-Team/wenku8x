@@ -32,7 +32,7 @@ jobs:
                    
       - name: Export IPA
         run: |
-          xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release CODE_SIGNING_REQUIRED=NO -sdk iphoneos -archivePath build/ios/archive/MyApp.xcarchive archive
+          xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release CODE_SIGNING_REQUIRED=NO -sdk iphoneos -archivePath build/ios/archive/MyApp.xcarchive archive -allowProvisioningUpdates
           xcodebuild -exportArchive -archivePath build/ios/archive/MyApp.xcarchive -exportOptionsPlist ios/Runner/Info.plist -exportPath build/ios/ipa
 
       - name: Upload IPA artifact
