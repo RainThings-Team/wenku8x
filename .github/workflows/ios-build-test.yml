@@ -38,7 +38,15 @@ jobs:
                    
       - name: Export IPA
         run: |
-         xcrun -sdk iphoneos PackageApplication -v build/ios/iphoneos/Runner.app -o build/ios/ipa/Runner.ipa
+         mkdir -p build/ios/ipa/Payload
+          
+         # 将 .app 文件复制到 Payload 文件夹中
+         cp -r build/ios/iphoneos/Runner.app build/ios/ipa/Payload/
+         # 进入 build/ios/ipa 目录
+         cd build/ios/ipa
+         # 将 Payload 文件夹压缩为 Runner.ipa
+         zip -r Runner.ipa Payload
+         #xcrun -sdk iphoneos PackageApplication -v build/ios/iphoneos/Runner.app -o build/ios/ipa/Runner.ipa
      
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v3
