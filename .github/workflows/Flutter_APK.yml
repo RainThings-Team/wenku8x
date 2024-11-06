@@ -3,10 +3,8 @@ name: Flutter_APK
 on:
   workflow_dispatch:  # 支持手动触发
     inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
+      target:
+
 
 jobs:
   build_apk:
