@@ -32,7 +32,7 @@ jobs:
         run: |
           xcodebuild -exportArchive \
             -archivePath build/ios/archive/MyApp.xcarchive \
-            -exportOptionsPlist ios/ExportOptions.plist \
+            -exportOptionsPlist ios/Runner/Info.plist \
             -exportPath build/ios/ipa
 
       - name: Upload IPA artifact
