@@ -9,19 +9,34 @@ jobs:
     runs-on: macos-13
 
     steps:
-    - name: Checkout the code
-      uses: actions/checkout@v2
-    - name: Install and set Flutter version
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.13.6'
-    - name: Build Flutter
-      run: |
-           flutter pub get
-           flutter run 
-           flutter build apk --release --target-platform=android-arm64
-#    - name: Publish iOS Artefacts
-#      uses: actions/upload-artifact@v1
-#      with:
- #       name: release-ios
- #       path: ios
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Install and set Flutter version
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.6'
+
+      - name: Disable Flutter Analytics
+        run: flutter config --no-analytics
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS app
+        run: |
+          flutter devices
+          flutter build ios --release --no-codesign -d macos
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath build/ios/archive/MyApp.xcarchive \
+            -exportOptionsPlist ios/ExportOptions.plist \
+            -exportPath build/ios/ipa
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MyApp-IPA
+          path: build/ios/ipa/*.ipa
