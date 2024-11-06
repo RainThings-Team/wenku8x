@@ -1,0 +1,24 @@
+name: Flutter_iOS
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build_ios:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2
+    - name: Install and set Flutter version
+      uses: subosito/flutter-action@v1.4.0
+      with:
+        flutter-version: '2.10.0'
+    - name: Build Flutter
+      run: flutter build ios --release --no-codesign
+    - name: Publish iOS Artefacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: release-ios
+        path: build-output/ios
