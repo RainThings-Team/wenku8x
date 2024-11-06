@@ -31,7 +31,8 @@ jobs:
         run: flutter devices # 可选步骤，用于在模拟器或设备上运行应用
 
       - name: Build APK for release
-        run: flutter build apk --release --target-platform=android-arm64 # 构建 APK 文件
+        run: flutter build apk --release --target-platform=android-arm64 --verbose --gradle-args="--info"
+ # 构建 APK 文件
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v3
