@@ -16,9 +16,9 @@ jobs:
       with:
         flutter-version: '3.13.6'
     - name: Build Flutter
-      run: 
+      run: |
            flutter pub get
-           flutter run /
+           flutter run 
            flutter build ios --release --target-platform=ios-arm64 --no-codesign
 #    - name: Publish iOS Artefacts
 #      uses: actions/upload-artifact@v1
