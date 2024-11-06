@@ -1,0 +1,40 @@
+name: Flutter_APK
+
+on:
+  workflow_dispatch:  # 支持手动触发
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+
+jobs:
+  build_apk:
+    runs-on: macos-13  # 使用 macOS 运行环境，适用于跨平台构建
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Install and set Flutter version
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.6'
+
+      - name: Disable Flutter Analytics
+        run: flutter config --no-analytics
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run the app (optional)
+        run: flutter run  # 可选步骤，用于在模拟器或设备上运行应用
+
+      - name: Build APK for release
+        run: flutter build apk --release --target-platform=android-arm64  # 构建 APK 文件
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MyApp-APK
+          path: build/app/outputs/flutter-apk/app-release.apk  # 上传生成的 APK 文件
