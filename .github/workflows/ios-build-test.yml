@@ -29,6 +29,12 @@ jobs:
         run: |
           flutter devices
           flutter build ios --release --no-codesign -d macos
+      
+      - name: Upload app artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Runner.app
+          path: build/ios/iphoneos/
                    
       - name: Export IPA
         run: |
