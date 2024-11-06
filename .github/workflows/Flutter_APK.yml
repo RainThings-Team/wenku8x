@@ -17,7 +17,7 @@ jobs:
       - name: Install and set Flutter version
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.6'
+          flutter-version: 'stable'
 
       - name: Disable Flutter Analytics
         run: flutter config --no-analytics
