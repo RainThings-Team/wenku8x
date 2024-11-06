@@ -28,7 +28,7 @@ jobs:
       
         run: |
           flutter devices
-          flutter build ios --release --no-codesign -d macos --info
+          flutter build ios --release --no-codesign -d macos
                    
       - name: Export IPA
         run: |
