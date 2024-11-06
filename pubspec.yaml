@@ -57,9 +57,6 @@ dependencies:
   isar_flutter_libs: ^3.1.0+1
   url_launcher: ^6.1.14
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
