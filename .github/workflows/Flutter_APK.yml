@@ -26,7 +26,7 @@ jobs:
         run: flutter pub get
 
       - name: Run the app (optional)
-        run: flutter run  # 可选步骤，用于在模拟器或设备上运行应用
+        run: flutter devices # 可选步骤，用于在模拟器或设备上运行应用
 
       - name: Build APK for release
         run: flutter build apk --release --target-platform=android-arm64  # 构建 APK 文件
