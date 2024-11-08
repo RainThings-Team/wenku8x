@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-  build_apk:
+  build_win:
     runs-on: windows-2022  # Windows只能用Windows，也基本只能在Windows上用
 
     steps:
