@@ -4,6 +4,8 @@ on:
   workflow_dispatch:  # 支持手动触发
     inputs:
       target:
+      draft:
+      prerelease:
 
 
 jobs:
@@ -18,7 +20,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.24.2
+          flutter-version: 3.16.5
       - run: flutter --version
 
       - name: Disable Flutter Analytics
@@ -27,8 +29,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run the app (optional)
-        run: flutter devices # 可选步骤，用于在模拟器或设备上运行应用
+     # - name: Run the app (optional)
+     #   run: flutter devices # 可选步骤，用于在模拟器或设备上运行应用
 
       - name: Build APK for release
         run: flutter build apk --release --target-platform=android-arm64 --verbose # 构建 APK 文件
@@ -47,8 +49,8 @@ jobs:
         with:
           tag_name: "${{ github.event.inputs.target }}" # 指定的更新版本号
           release_name: "APK Release ${{ github.event.inputs.target }}"
-          draft: false
-          prerelease: false
+          draft: ${{ github.event.inputs.draft }}
+          prerelease: ${{ github.event.inputs.prerelease }}
 
       - name: Upload APK to Release
         uses: actions/upload-release-asset@v1
@@ -57,5 +59,6 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/app/outputs/flutter-apk/app-release.apk
-          asset_name: release_${{ github.event.inputs.target }}.apk
+          asset_name: Android_${{ github.event.inputs.target }}.apk
+          asset_content_type: application/vnd.android.package-archive
 
