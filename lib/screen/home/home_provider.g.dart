@@ -15,7 +15,7 @@ extension GetBookItemCollection on Isar {
 
 const BookItemSchema = CollectionSchema(
   name: r'BookItem',
-  id: -5793831179969553486,
+  id: BigInt.parse('-5793831179969553486'),
   properties: {
     r'aid': PropertySchema(
       id: 0,
