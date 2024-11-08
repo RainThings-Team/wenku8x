@@ -51,15 +51,17 @@ flutter build apk --release --target-platform=android-arm64 // 编译
 
 ### 平台支持情况
 
-[x] Android13 —— 主要运行
+[x] Android13 —— 主要运行，Flutter版本3.16.5
 
-[x] iPadOS17 —— 简单测试，大致可运行
+[x] iPadOS17 —— 已测试，可运行 Flutteer 3.24.4
 
-[x] macOS13+ —— 简单测试，可运行
+[x] macOS13+ —— 简单测试，可运行（作者说的）
 
 [ ] Linux —— 未测试，理论可运行
 
-[ ] Windows —— 未测试，理论可运行
+[x] Windows —— 已测试，可运行，但并非为键鼠操作设计 Flutter 3.24.2
+
+[ ] Web —— 已测试，可编译，但数值超过Js上限，修改后可通过但不能运行 Flutter 3.24.2
 
 ## 声明
 
