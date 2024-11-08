@@ -30,7 +30,7 @@ class BookItem with _$BookItem {
 
   @Name("id")
   Id get id {
-    return Isar.autoIncrement;
+    return Isar.autoIncrement.clamp(-9007199254740991, 9007199254740991);
   }
 }
 
