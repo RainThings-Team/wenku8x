@@ -12,10 +12,10 @@ part of 'home_provider.dart';
 extension GetBookItemCollection on Isar {
   IsarCollection<BookItem> get bookItems => this.collection();
 }
-
+final BigInt bookItemId = BigInt.from(-5793831179969553486);
 const BookItemSchema = CollectionSchema(
   name: r'BookItem',
-  id: BigInt.parse('-5793831179969553486'),
+  id: bookItemId,
   properties: {
     r'aid': PropertySchema(
       id: 0,
