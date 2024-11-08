@@ -34,7 +34,7 @@ jobs:
      #   run: flutter devices # 可选步骤，用于在模拟器或设备上运行应用
 
       - name: Build EXE for release
-        run: flutter build windows --verbose 
+        run: flutter build windows --release --verbose 
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
