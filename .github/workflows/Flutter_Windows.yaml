@@ -11,7 +11,7 @@ on:
 
 jobs:
   build_apk:
-    runs-on: macos-13  # 使用 macOS 运行环境，适用于跨平台构建
+    runs-on: windows-2022  # Windows只能用Windows，也基本只能在Windows上用
 
     steps:
       - name: Checkout the code
