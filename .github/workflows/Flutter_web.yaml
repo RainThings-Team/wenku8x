@@ -1,4 +1,4 @@
-name: Flutter_Windows
+name: Flutter_Web
 
 on:
   workflow_dispatch:  # 支持手动触发
